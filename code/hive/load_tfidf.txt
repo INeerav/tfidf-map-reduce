@@ -1,0 +1,3 @@
+load data inpath 'final/part-00000' into table tfidf_spam;
+
+load data inpath 'finalham/part-00000' into table tfidf_ham;

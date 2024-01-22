@@ -1,0 +1,12 @@
+create database emails_db;
+
+CREATE EXTERNAL TABLE IF NOT EXISTS `emails_db`.`emails` (
+  `id` string,
+  `docnumber` string,  
+  `extractedsubject` string,  
+  `extractedfrom` string,  
+  `extracteddocnumber` string,  
+  `extractedbodytext` string 
+) COMMENT "emails for viewing"
+STORED AS PARQUET
+LOCATION 's3://emails-2d3e60d0/clean/';

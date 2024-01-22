@@ -1,0 +1,9 @@
+CREATE TABLE emails_db.spam_analysis 
+(id string, docnumber string, extractedsubject string, extractedfrom string, extractedbodytext string);
+
+CREATE TABLE emails_db.ham_analysis 
+(id string, docnumber string, extractedsubject string, extractedfrom string, extractedbodytext string);
+
+CREATE TABLE tfidf_spam (id int, word string, tfidf double) row format delimited fields terminated by ',' stored as textfile;
+
+CREATE TABLE tfidf_ham (id int, word string, tfidf double) row format delimited fields terminated by ',' stored as textfile;

@@ -1,0 +1,11 @@
+hive -e 'select sa.id, sa.extractedbodytext from emails_db.spam_analysis sa inner join (
+select id,extractedfrom, count(*) as freq from emails_db.spam_analysis where extractedbodytext <> "" group by extractedfrom,id Order By freq desc limit 10) extr on sa.id = extr.id' > outputspam/spam10.csv
+;
+
+hive -e 'select sa.id, sa.extractedbodytext from emails_db.ham_analysis sa inner join (
+select id,extractedfrom, count(*) as freq from emails_db.ham_analysis where extractedbodytext <> "" group by extractedfrom,id Order By freq desc limit 10) extr on sa.id = extr.id' > outputham/ham10.csv
+;
+
+hive -e 'select * from tfidf_spam order by tfidf desc limit 10' > finalspam10.csv;
+
+hive -e 'select * from tfidf_ham order by tfidf desc limit 10' > finalham10.csv;

@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "To create S3 bucket for storing hillary emails dataset"
+Resources:
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Join
+        - "-"
+        - - "emails"
+          - !Select
+            - 0
+            - !Split
+              - "-"
+              - !Select
+                - 2
+                - !Split
+                  - "/"
+                  - !Ref "AWS::StackId"
+      PublicAccessBlockConfiguration: 
+        BlockPublicAcls: True
+        BlockPublicPolicy: True
+        IgnorePublicAcls: True
+        RestrictPublicBuckets: True
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'AES256'
+  S3Bucket2:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Join
+        - "-"
+        - - "output"
+          - !Select
+            - 0
+            - !Split
+              - "-"
+              - !Select
+                - 2
+                - !Split
+                  - "/"
+                  - !Ref "AWS::StackId"
+      PublicAccessBlockConfiguration: 
+        BlockPublicAcls: True
+        BlockPublicPolicy: True
+        IgnorePublicAcls: True
+        RestrictPublicBuckets: True
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'AES256'
